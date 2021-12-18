@@ -1,0 +1,41 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <h2>Load Partial View</h2>
+        <p>
+            Select Value from dropdown and load partial view using javascript
+            <select name="cars" id="ddlCountry" onchange="getSelectedCountry()">
+                <option value="USA">USA</option>
+                <option value="UK">UK</option>
+                <option value="India">India</option>
+            </select>
+        </p>
+        <p></p>
+    </div>
+    <div class="col-md-8" id="first">
+        No Data Found
+    </div>
+ 
+</div>
+@section Scripts{
+    <script language="javascript">
+        $(function () {
+            allCountry();
+        });
+
+        function allCountry() {
+            $("#first").load("/Home/GetPartial");
+        }
+        function getSelectedCountry() {
+            let selectedCountry = $("#ddlCountry").val();
+            $("#first").load("/Home/GetSelectedPartial?selectedCountry=" + selectedCountry);
+        }
+    </script>
+}
